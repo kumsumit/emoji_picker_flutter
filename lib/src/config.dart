@@ -1,6 +1,8 @@
 import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
 import 'package:flutter/material.dart';
 
+import 'view_order_config.dart';
+
 /// Number of skin tone icons
 const kSkinToneCount = 6;
 
@@ -9,12 +11,16 @@ class Config {
   /// Constructor
   const Config({
     this.height = 256,
-    this.swapCategoryAndBottomBar = false,
     this.checkPlatformCompatibility = true,
     this.emojiSet = defaultEmojiSet,
     this.emojiTextStyle,
     this.customBackspaceIcon,
     this.customSearchIcon,
+     this.viewOrderConfig = const ViewOrderConfig(
+      top: EmojiPickerItem.categoryBar,
+      middle: EmojiPickerItem.emojiView,
+      bottom: EmojiPickerItem.searchBar,
+    ),
     this.emojiViewConfig = const EmojiViewConfig(),
     this.skinToneConfig = const SkinToneConfig(),
     this.categoryViewConfig = const CategoryViewConfig(),
@@ -24,9 +30,6 @@ class Config {
 
   /// Max Height of the Emoji's view
   final double height;
-
-  /// Swap the category view and bottom bar (category bottom and bottom bar top)
-  final bool swapCategoryAndBottomBar;
 
   /// Verify that emoji glyph is supported by the platform (Android only)
   final bool checkPlatformCompatibility;
@@ -50,6 +53,9 @@ class Config {
   /// Custom search icon
   final Icon? customSearchIcon;
 
+  /// Config for items in order to show in UI
+  final ViewOrderConfig viewOrderConfig;
+
   /// Emoji view config
   final EmojiViewConfig emojiViewConfig;
 
@@ -68,7 +74,7 @@ class Config {
   @override
   bool operator ==(other) {
     return (other is Config) &&
-        other.swapCategoryAndBottomBar == swapCategoryAndBottomBar &&
+        other.viewOrderConfig == viewOrderConfig &&
         other.checkPlatformCompatibility == checkPlatformCompatibility &&
         other.emojiSet == emojiSet &&
         other.emojiTextStyle == emojiTextStyle &&
@@ -82,7 +88,7 @@ class Config {
 
   @override
   int get hashCode =>
-      swapCategoryAndBottomBar.hashCode ^
+      viewOrderConfig.hashCode ^
       checkPlatformCompatibility.hashCode ^
       emojiSet.hashCode ^
       (emojiTextStyle?.hashCode ?? 0) ^
