@@ -1,11 +1,11 @@
 import 'dart:convert';
-import 'dart:io';
 import 'dart:math';
 
 import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:universal_io/io.dart';
 
 /// Initial value for RecentEmoji
 const initVal = 1;
@@ -124,7 +124,7 @@ class EmojiPickerInternalUtils {
   Emoji removeSkinTone(Emoji emoji) {
     return emoji.copyWith(
       emoji: emoji.emoji.replaceFirst(
-        RegExp('${SkinTone.values.join('|')}'),
+        RegExp(SkinTone.values.join('|')),
         '',
       ),
     );

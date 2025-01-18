@@ -134,9 +134,9 @@ class MyAppState extends State<MyApp> {
                   config: Config(
                     height: 256,
                     checkPlatformCompatibility: true,
+                    viewOrderConfig: const ViewOrderConfig(),
                     emojiTextStyle: _textStyle,
                     emojiViewConfig: const EmojiViewConfig(),
-                    swapCategoryAndBottomBar: false,
                     skinToneConfig: const SkinToneConfig(),
                     categoryViewConfig: const CategoryViewConfig(),
                     bottomActionBarConfig: const BottomActionBarConfig(),

@@ -1,18 +1,14 @@
 import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
-import 'package:emoji_picker_flutter/src/view_order_config.dart';
 import 'package:flutter/material.dart';
 
 /// Default EmojiPicker Implementation
 class DefaultEmojiPickerView extends EmojiPickerView {
   /// Constructor
-  DefaultEmojiPickerView(
-    Config config,
-    EmojiViewState state,
-    VoidCallback showSearchBar,
-  ) : super(config, state, showSearchBar);
+  const DefaultEmojiPickerView(super.config, super.state, super.showSearchBar,
+      {super.key});
 
   @override
-  _DefaultEmojiPickerViewState createState() => _DefaultEmojiPickerViewState();
+  State<DefaultEmojiPickerView> createState() => _DefaultEmojiPickerViewState();
 }
 
 class _DefaultEmojiPickerViewState extends State<DefaultEmojiPickerView>
@@ -59,7 +55,7 @@ class _DefaultEmojiPickerViewState extends State<DefaultEmojiPickerView>
           buttonMode: widget.config.emojiViewConfig.buttonMode,
           child: Column(
             children: [
-        widget.config.viewOrderConfig.top,
+              widget.config.viewOrderConfig.top,
               widget.config.viewOrderConfig.middle,
               widget.config.viewOrderConfig.bottom,
             ].map(
@@ -74,14 +70,10 @@ class _DefaultEmojiPickerViewState extends State<DefaultEmojiPickerView>
                   case EmojiPickerItem.searchBar:
                     // Search Bar
                     return _buildBottomSearchBar();
-                }
-              },
-            ).toList(),
-            
-          ),
-        );
-      },
-    );
+                  }
+              }
+            ).toList()));
+  });
   }
 
   Widget _buildCategoryView() {

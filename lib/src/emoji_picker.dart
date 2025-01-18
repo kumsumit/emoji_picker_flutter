@@ -1,9 +1,9 @@
-import 'dart:io';
-
 import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
+import 'package:emoji_picker_flutter/locales/default_emoji_set_locale.dart';
 import 'package:emoji_picker_flutter/src/emoji_picker_internal_utils.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:universal_io/io.dart';
 
 /// All the possible categories that [Emoji] can be put into
 ///
@@ -82,17 +82,17 @@ enum ButtonMode {
 /// The function returns the selected [Emoji] as well
 /// as the [Category] from which it originated
 /// Category can be null in some cases, for example in search results
-typedef void OnEmojiSelected(Category? category, Emoji emoji);
+typedef OnEmojiSelected = void Function(Category? category, Emoji emoji);
 
 /// Callback from emoji cell to show a skin tone selection overlay
-typedef void OnSkinToneDialogRequested(Offset emojiBoxPosition, Emoji emoji,
-    double emojiSize, CategoryEmoji? categoryEmoji);
+typedef OnSkinToneDialogRequested = void Function(Offset emojiBoxPosition,
+    Emoji emoji, double emojiSize, CategoryEmoji? categoryEmoji);
 
 /// Callback function for backspace button
-typedef void OnBackspacePressed();
+typedef OnBackspacePressed = void Function();
 
 /// Callback function for backspace button when long pressed
-typedef void OnBackspaceLongPressed();
+typedef OnBackspaceLongPressed = void Function();
 
 /// The Emoji Keyboard widget
 ///
@@ -104,14 +104,14 @@ typedef void OnBackspaceLongPressed();
 class EmojiPicker extends StatefulWidget {
   /// EmojiPicker for flutter
   const EmojiPicker({
-    Key? key,
+    super.key,
     this.textEditingController,
     this.scrollController,
     this.onEmojiSelected,
     this.onBackspacePressed,
     this.config = const Config(),
     this.customWidget,
-  }) : super(key: key);
+  });
 
   /// Custom widget
   final EmojiViewBuilder? customWidget;
@@ -365,7 +365,8 @@ class EmojiPickerState extends State<EmojiPicker> {
       final recentEmojiMap = _recentEmoji.map((e) => e.emoji).toList();
       _categoryEmoji.add(CategoryEmoji(Category.RECENT, recentEmojiMap));
     }
-    final data = widget.config.emojiSet;
+    final data = widget.config.emojiSet?.call(widget.config.locale) ??
+        getDefaultEmojiLocale(widget.config.locale);
     _categoryEmoji.addAll(widget.config.checkPlatformCompatibility
         ? await _emojiPickerInternalUtils.filterUnsupported(data)
         : data);

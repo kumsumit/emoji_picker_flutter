@@ -1,3 +1,5 @@
+// ignore_for_file: lines_longer_than_80_chars
+
 import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
 
 /// List of categories of emojis
@@ -66,7 +68,8 @@ const List<CategoryEmoji> defaultEmojiSet = [
     Emoji('🥵', 'Hot Face'),
     Emoji('🥶', 'Cold Face'),
     Emoji('🥴', 'Woozy Face'),
-    Emoji('😵', 'Dizzy Face'),
+    Emoji('😵', 'Shocked Face'),
+    Emoji('😵‍💫', 'Dizzy Face'),
     Emoji('🤯', 'Exploding Head'),
     Emoji('🤠', 'Cowboy Hat Face'),
     Emoji('🥳', 'Partying Face'),
@@ -341,6 +344,7 @@ const List<CategoryEmoji> defaultEmojiSet = [
     Emoji('🗣️', 'Speaking Head'),
     Emoji('👤', 'Bust in Silhouette'),
     Emoji('👥', 'Busts in Silhouette'),
+    Emoji('🫂', 'People Hugging'),
     Emoji('👣', 'Footprints'),
     Emoji('🧳', 'Luggage'),
     Emoji('🌂', 'Closed Umbrella'),
@@ -1394,6 +1398,7 @@ const List<CategoryEmoji> defaultEmojiSet = [
     Emoji('🏴', 'Black Flag'),
     Emoji('🏳️', 'White Flag'),
     Emoji('🏳️‍🌈', 'Rainbow Flag'),
+    Emoji('🏳️‍⚧️', 'Transgender Flag'),
     Emoji('🏴‍☠️', 'Pirate Flag'),
     Emoji('🇦🇨', 'Flag: Ascension Island'),
     Emoji('🇦🇩', 'Flag: Andorra'),
